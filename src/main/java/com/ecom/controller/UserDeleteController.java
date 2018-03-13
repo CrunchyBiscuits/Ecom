@@ -22,7 +22,7 @@ public class UserDeleteController {
 
     //返回ModelAndView进行基础页面输出
     @RequestMapping(value="/delete",method= RequestMethod.POST)
-    public ModelAndView login(Model model) {
+    public ModelAndView delete(Model model) {
 
         //从Model类中获取名为"user"的数据
         User user = (User)model.asMap().get("user");
@@ -36,7 +36,7 @@ public class UserDeleteController {
             deleteMessage = "Delete Failed";
         }
         System.out.println(deleteMessage);
-        return new ModelAndView("delete", "message", deleteMessage);
+        return new ModelAndView("userpages/delete", "message", deleteMessage);
     }
 
 }

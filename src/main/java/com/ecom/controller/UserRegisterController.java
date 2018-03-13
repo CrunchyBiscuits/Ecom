@@ -20,7 +20,7 @@ public class UserRegisterController {
 
     //返回ModelAndView进行基础页面输出
     @RequestMapping(value="/register",method= RequestMethod.POST)
-    public ModelAndView login(Model model) {
+    public ModelAndView register(Model model) {
 
         //从Model类中获取名为"user"的数据
         User user = (User)model.asMap().get("user");
@@ -34,7 +34,7 @@ public class UserRegisterController {
             registerMessage = "Register Failed";
         }
         System.out.println(registerMessage);
-        return new ModelAndView("register", "message", registerMessage);
+        return new ModelAndView("userpages/register", "message", registerMessage);
     }
 
 }

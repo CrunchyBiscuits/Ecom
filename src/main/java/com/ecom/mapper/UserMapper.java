@@ -15,14 +15,14 @@ public interface UserMapper {
             "values(#{email},#{name},#{password},#{role},#{actual_name},#{phone},#{gender},#{status})")
     int insertUser(User user);
 
-    @Insert("insert into user(profile) values(#{profile})")
-    int insertUserProfile(String email, Blob profile);
-
     @Delete("delete from user where EMAIL=#{email}")
     int deleteUser(String email);
 
     @Update("update user set name=#{name},phone=#{phone} where email=#{email}")
     int updateUser(User user);
+
+    @Update("update user set profile=#{profile} where email=#{email}")
+    int insertUserProfile(User user);
 
     @Select("select * from user where email=#{email}")
     User getUserByEmail(String email);

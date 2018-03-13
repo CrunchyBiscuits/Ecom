@@ -2,7 +2,7 @@
 <body>
 <h2>Login</h2>
 <form method="post" action="login">
-    User Name:<input type="text" name="email"><br>
+    Email:<input type="text" name="email"><br>
     Password:<input type="password" name="password"><br>
     <input type="submit" value="Login">
 </form>
@@ -46,22 +46,29 @@
     <input type="submit" value="submit"/>
 </form>
 
-<form action="Add_new_book" method="post"
+<h2>add profile</h2>
+<form action="profile" method="post"
       enctype="multipart/form-data">
     <table  style="height: 100px" cellpadding="20px">
         <tr>
+            <th style="vertical-align: middle">Email</th>
+            <td style="vertical-align: middle"><input name="email" type="text"></td>
+        </tr>
+        <tr>
             <th style="vertical-align: middle">Profile</th>
             <td style="vertical-align: middle"><input name="profile" type="file" accept="image/*"></td>
-        </tr>
-        <td></td>
-        <td></td>
-        <td></td>
         </tr>
     </table>
     <div>
         <input class="btn btn-info col-lg-8" type="submit" value="Add"
                style="width: 200px">
     </div>
+</form>
+
+<h2>show profile</h2>
+<form method="POST" action="showprofile">
+    Email:<input type="text" name="email"><br>
+    <input type="submit" value="Show User profile">
 </form>
 </body>
 </html>

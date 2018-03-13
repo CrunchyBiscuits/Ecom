@@ -1,5 +1,6 @@
 package com.ecom.beans;
 
+import java.io.FileInputStream;
 import java.sql.Blob;
 
 public class User {
@@ -11,7 +12,7 @@ public class User {
     private String actual_name;
     private String phone;
     private int gender;
-    private Blob profile;
+    private byte[] profile;
     private int pay_password;
     private int status;
 
@@ -71,11 +72,11 @@ public class User {
         this.gender = gender;
     }
 
-    public Blob getProfile() {
+    public byte[] getProfile() {
         return profile;
     }
 
-    public void setProfile(Blob profile) {
+    public void setProfile(byte[] profile) {
         this.profile = profile;
     }
 

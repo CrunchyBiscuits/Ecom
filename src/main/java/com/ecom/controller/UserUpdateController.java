@@ -23,7 +23,7 @@ public class UserUpdateController {
 
     //返回ModelAndView进行基础页面输出
     @RequestMapping(value="/update",method= RequestMethod.POST)
-    public ModelAndView login(Model model) {
+    public ModelAndView update(Model model) {
 
         //从Model类中获取名为"user"的数据
         User user = (User)model.asMap().get("user");
@@ -37,7 +37,7 @@ public class UserUpdateController {
             updateMessage = "Update Failed";
         }
         System.out.println(updateMessage);
-        return new ModelAndView("update", "message", updateMessage);
+        return new ModelAndView("userpages/update", "message", updateMessage);
     }
 
 }
