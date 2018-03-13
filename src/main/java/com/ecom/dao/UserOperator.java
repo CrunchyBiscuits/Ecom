@@ -45,6 +45,7 @@ public class UserOperator {
         UserMapper mapper = session.getMapper(UserMapper.class);
         //通过SQL语句的返回值，判断是否删除成功
         int result = mapper.deleteUser(user.getEmail());
+        session.commit();
         if (result == 0){
             return false;
         }else{
@@ -57,6 +58,7 @@ public class UserOperator {
         UserMapper mapper = session.getMapper(UserMapper.class);
         //通过SQL语句的返回值，判断是否插入成功
         int result = mapper.insertUser(user);
+        session.commit();
         if (result == 0){
             return false;
         }else{
@@ -68,6 +70,7 @@ public class UserOperator {
     public boolean updateUser(){
         UserMapper mapper = session.getMapper(UserMapper.class);
         int result = mapper.updateUser(user);
+        session.commit();
         if (result == 0){
             return false;
         }else{
@@ -77,7 +80,6 @@ public class UserOperator {
     //finalize函数处理数据库的关闭
     protected void finalize() throws java.lang.Throwable{
         super.finalize();
-        session.commit();
         session.close();
     }
 }
