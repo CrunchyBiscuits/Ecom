@@ -70,5 +70,11 @@
     Email:<input type="text" name="email"><br>
     <input type="submit" value="Show User profile">
 </form>
+
+<h2>show item profile</h2>
+<form method="POST" action="showprofile">
+    Email:<input type="text" name="product_id"><br>
+    <input type="submit" value="Show item images">
+</form>
 </body>
 </html>

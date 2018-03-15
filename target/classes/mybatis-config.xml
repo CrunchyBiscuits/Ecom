@@ -20,6 +20,7 @@
 
 <mappers>
     <mapper class="com.ecom.mapper.UserMapper"/>
+    <mapper class="com.ecom.mapper.ProductMapper"/>
 </mappers>
 
 </configuration>

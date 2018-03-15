@@ -5,13 +5,19 @@
   Time: 13:48
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="com.ecom.beans.User"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Title</title>
 </head>
 <body>
-<img src="image.jsp">
+<table>
+    <%String email = request.getParameter("email");%>
+    <tr>
+        <td>
+            <img src="userimage?email=<%=email%>">
+        </td>
+    </tr>
+</table>
 </body>
 </html>
