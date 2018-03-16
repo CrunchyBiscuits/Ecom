@@ -37,7 +37,7 @@ public class UserUpdateController {
             updateMessage = "Update Failed";
         }
         System.out.println(updateMessage);
-        return new ModelAndView("userpages/update", "message", updateMessage);
+        return new ModelAndView("resultpage", "message", updateMessage);
     }
 
 }

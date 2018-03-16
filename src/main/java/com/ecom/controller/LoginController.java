@@ -46,6 +46,6 @@ public class LoginController {
             loginMessage = "Login Failed";
         }
         System.out.println(loginMessage);
-        return new ModelAndView("userpages/login", "message", loginMessage);
+        return new ModelAndView("resultpage", "message", loginMessage);
     }
 }

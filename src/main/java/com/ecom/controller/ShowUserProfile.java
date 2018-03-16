@@ -39,6 +39,6 @@ public class ShowUserProfile {
     public ModelAndView showprofile(Model model,HttpServletRequest request) {
         User user = (User)model.asMap().get("user");
         request.setAttribute("email",user.getEmail());
-        return new ModelAndView("showProfile");
+        return new ModelAndView("resultpage");
     }
 }

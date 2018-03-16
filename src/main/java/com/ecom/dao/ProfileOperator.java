@@ -110,7 +110,7 @@ public class ProfileOperator{
             if (parseRequest!= null){
                 for (FileItem item : parseRequest){
                     //添加计数器 为图片计数，方便之后通过顺序调取
-                    int imgNum = 0;
+                    //int imgNum = 0;
                     //判断是否为普通字段数据
                     if (item.isFormField()){
                         Map<String, Object> rowData = new HashMap<String, Object>();
@@ -126,29 +126,24 @@ public class ProfileOperator{
 
                         //存储进arraylist中
                         Map<String, byte[]> imgData = new HashMap<String, byte[]>();
-                        imgData.put(imgNum+"", imgByte);
+                        imgData.put("picture", imgByte);
                         picturelist.add(imgData);
-                        imgNum++;
                     }
                 }
             }
 
             //获取存储在itemlist中的数据，数据顺序和jsp中各控件顺序相同，并赋值给product
             //只有先插入product才能获取product_id，才能插入图片
-            int shop_id = Integer.parseInt(itemlist.get(0).get("shop_id").toString());
-            String product_name = itemlist.get(1).get("product_name").toString();
-            int category_id = Integer.parseInt(itemlist.get(2).get("category_id").toString());
-            float unit_price = Float.parseFloat(itemlist.get(3).get("unit_price").toString());
-            String details = itemlist.get(4).get("details").toString();
-            String add_date = itemlist.get(5).get("add_date").toString();
-            int stock = Integer.parseInt(itemlist.get(6).get("stock").toString());
-            int sales = Integer.parseInt(itemlist.get(7).get("sales").toString());
-            int status = Integer.parseInt(itemlist.get(8).get("status").toString());
+            String product_name = itemlist.get(0).get("product_name").toString();
+            float unit_price = Float.parseFloat(itemlist.get(1).get("unit_price").toString());
+            String details = itemlist.get(2).get("details").toString();
+            String add_date = itemlist.get(3).get("add_date").toString();
+            int stock = Integer.parseInt(itemlist.get(4).get("stock").toString());
+            int sales = Integer.parseInt(itemlist.get(5).get("sales").toString());
+            int status = Integer.parseInt(itemlist.get(6).get("status").toString());
 
             Product product = new Product();
-            product.setShop_id(shop_id);
             product.setProduct_name(product_name);
-            product.setCategory_id(category_id);
             product.setUnit_price(unit_price);
             product.setDetails(details);
             product.setDatetime(add_date);
@@ -159,29 +154,29 @@ public class ProfileOperator{
             //插入product信息
             ProductMapper productMapper = session.getMapper(ProductMapper.class);
             productMapper.insertProduct(product);
+            session.commit();
 
             //获取product_id
             int product_id = productMapper.getLastInsertID();
 
             //创建productpicture的model类用于插入数据库
             ProductPicutre productPicutre = new ProductPicutre();
-            //创建计数器用于获取
-            int imgNum = 0;
+
             //布尔判断，每一项是否插入成功
             boolean check = false;
+            productPicutre.setProduct_id(product_id);
 
-
-            for(Map<String, byte[]> img : picturelist){
-                productPicutre.setProduct_id(product_id);
-                productPicutre.setFile(img.get(imgNum));
-                productPicutre.setSequence(imgNum);
-                if(productMapper.insertProductPicture(productPicutre)>0){
-                    check = true;
-                }else{
+            for (int i=0;i<picturelist.size();i++) {
+                if (picturelist.get(i).get("picture")==null) {
                     check = false;
-                    return check;
+                }else {
+                    productPicutre.setFile(picturelist.get(i).get("picture"));
+                    productPicutre.setSequence(i);
+                    productMapper.insertProductPicture(productPicutre);
+                    session.commit();
+                    check = true;
                 }
-                imgNum++;
+
             }
             return check;
 
@@ -189,5 +184,10 @@ public class ProfileOperator{
             e.printStackTrace();
         }
         return false;
+    }
+
+    protected void finalize() throws java.lang.Throwable{
+        super.finalize();
+        session.close();
     }
 }

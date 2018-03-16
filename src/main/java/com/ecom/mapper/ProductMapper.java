@@ -13,6 +13,9 @@ public interface ProductMapper{
     @Select("select * from product_picture where product_id = #{product_id}")
     List<ProductPicutre> getProductImages();
 
+    @Select("select * from product_picture where product_id = #{product_id} and sequence = #{sequence}")
+    ProductPicutre getProductPicture(int product_id, int sequence);
+
     @Select("select * from product where product_id = #{product_id}")
     Product getProduct(int product_id);
 
@@ -22,8 +25,8 @@ public interface ProductMapper{
     @Select("select last_insert_id()")
     int getLastInsertID();
 
-    @Insert("insert into product(shop_id,product_name,category_id,unit_price,details,add_date,stock,sales,status)" +
-            "values(#{shop_id},#{product_name},#{category_id},#{unit_price},#{details},#{add_date},#{stock},#{sales},#{status}) ")
+    @Insert("insert into product(product_name,unit_price,details,add_date,stock,sales,status)" +
+            "values(#{product_name},#{unit_price},#{details},#{add_date},#{stock},#{sales},#{status}) ")
     int insertProduct(Product product);
 
     @Insert("insert into product_picture(product_id,file,sequence) values(#{product_id},#{file},#{sequence})")

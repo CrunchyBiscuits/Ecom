@@ -34,7 +34,7 @@ public class UserRegisterController {
             registerMessage = "Register Failed";
         }
         System.out.println(registerMessage);
-        return new ModelAndView("userpages/register", "message", registerMessage);
+        return new ModelAndView("resultpage", "message", registerMessage);
     }
 
 }

@@ -10,7 +10,7 @@ public class Product {
     private int category_id;
     private float unit_price;
     private String details;
-    private String datetime;
+    private String add_date;
     private int stock;
     private int sales;
     private int status;
@@ -63,12 +63,12 @@ public class Product {
         this.details = details;
     }
 
-    public String getDatetime() {
-        return datetime;
+    public String getadd_date() {
+        return add_date;
     }
 
-    public void setDatetime(String datetime) {
-        this.datetime = datetime;
+    public void setDatetime(String add_date) {
+        this.add_date = add_date;
     }
 
     public int getStock() {

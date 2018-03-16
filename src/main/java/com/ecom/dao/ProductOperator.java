@@ -1,6 +1,7 @@
 package com.ecom.dao;
 
 import com.ecom.beans.Product;
+import com.ecom.beans.ProductPicutre;
 import com.ecom.mapper.ProductMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -37,7 +38,7 @@ public class ProductOperator {
     }
 
     //新增商品
-    public boolean registerUser(){
+    public boolean insertProduct(){
         ProductMapper mapper = session.getMapper(ProductMapper.class);
         //通过SQL语句的返回值，判断是否插入成功
         int result = mapper.insertProduct(product);
@@ -47,19 +48,6 @@ public class ProductOperator {
         if (result == 0)return false;
         return true;
     }
-
-    /*
-    //插入商品图片
-    public boolean insertProductPictures(){
-        ProductMapper mapper = session.getMapper(ProductMapper.class);
-        //通过SQL语句的返回值，判断是否插入成功
-        int result = mapper.insertProductPicture(product);
-
-        //确认执行，没有commit这一句，数据库不会更新
-        session.commit();
-        if (result == 0) return false;
-        return true;
-    }*/
 
     //更新商品信息
     public boolean updateProduct(){
@@ -78,7 +66,11 @@ public class ProductOperator {
         return mapper.getProduct(product.getProduct_id());
     }
 
-
+    //获取商品的一个图片
+    public ProductPicutre selectProductPicture(int sequence){
+        ProductMapper mapper = session.getMapper(ProductMapper.class);
+        return mapper.getProductPicture(product.getProduct_id(), sequence);
+    }
     //finalize函数处理数据库的关闭
     protected void finalize() throws java.lang.Throwable{
         super.finalize();

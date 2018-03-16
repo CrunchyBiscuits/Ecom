@@ -36,7 +36,7 @@ public class UserDeleteController {
             deleteMessage = "Delete Failed";
         }
         System.out.println(deleteMessage);
-        return new ModelAndView("userpages/delete", "message", deleteMessage);
+        return new ModelAndView("resultpage", "message", deleteMessage);
     }
 
 }

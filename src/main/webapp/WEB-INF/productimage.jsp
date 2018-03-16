@@ -1,16 +1,20 @@
-<%@ page import="com.ecom.dao.UserOperator" %>
 <%@ page import="java.io.OutputStream" %>
 <%@ page import="com.ecom.beans.ProductPicutre" %>
+<%@ page import="com.ecom.dao.ProductOperator" %>
+<%@ page import="com.ecom.beans.Product" %>
 <%
     int product_id = Integer.parseInt(request.getParameter("product_id"));
     int sequence = Integer.parseInt(request.getParameter("sequence"));
 
-    ProductPicutre productPicutre = new ProductPicutre();
-    productPicutre.setProduct_id(product_id);
-    //UserOperator对user对象进行基础操作
-    UserOperator operator = new UserOperator(user);
+    Product product = new Product();
+    product.setProduct_id(product_id);
+
+    ProductOperator operator = new ProductOperator(product);
+
+    ProductPicutre productPicutre = operator.selectProductPicture(sequence);
     //获取图片字节数据
-    byte[] imgByte = operator.selectUser().getProfile();
+
+    byte[] imgByte = productPicutre.getFile();
     if (imgByte.length!=0) {
       /*  //字节数据转换成流
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(imgByte);

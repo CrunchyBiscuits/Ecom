@@ -25,6 +25,7 @@ public class AddUserProfile {
             profileMessage = "Insert Profile Failed";
         }
         System.out.println(profileMessage);
-        return new ModelAndView("addProfile", "message", profileMessage);
+        return new ModelAndView("resultpage", "message", profileMessage);
     }
+
 }

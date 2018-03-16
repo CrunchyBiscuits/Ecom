@@ -71,10 +71,28 @@
     <input type="submit" value="Show User profile">
 </form>
 
-<h2>show item profile</h2>
+
+<h2>add product image</h2>
+<form method="POST" action="addproduct" enctype="multipart/form-data">
+    product name:<input type="text" name="product_name"><br>
+    unit price:<input type="text" name="unit_price"><br>
+    details:<input type="text" name="details"><br>
+    add date:<input type="date" name="add_date"><br>
+    stock:<input type="text" name="stock"><br>
+    sales:<input type="text" name="sales"><br>
+    status:<input type="text" name="status"><br>
+    <input name="image1" type="file" accept="image/*">
+    <input name="image2" type="file" accept="image/*">
+    <input name="image3" type="file" accept="image/*"><br>
+    <input type="submit" value="Add Product">
+</form>
+
+
+<h2>show product profile</h2>
 <form method="POST" action="showprofile">
     Email:<input type="text" name="product_id"><br>
     <input type="submit" value="Show item images">
 </form>
+<br><br><br>
 </body>
 </html>
