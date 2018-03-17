@@ -89,8 +89,8 @@
 
 
 <h2>show product profile</h2>
-<form method="POST" action="showprofile">
-    Email:<input type="text" name="product_id"><br>
+<form method="POST" action="/showproductprofile">
+    product id:<input type="text" name="product_id"><br>
     <input type="submit" value="Show item images">
 </form>
 <br><br><br>

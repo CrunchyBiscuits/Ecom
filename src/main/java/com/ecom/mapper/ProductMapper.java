@@ -11,10 +11,10 @@ import java.util.List;
 
 public interface ProductMapper{
     @Select("select * from product_picture where product_id = #{product_id}")
-    List<ProductPicutre> getProductImages();
+    List<ProductPicutre> getProductPictures(int product_id);
 
     @Select("select * from product_picture where product_id = #{product_id} and sequence = #{sequence}")
-    ProductPicutre getProductPicture(int product_id, int sequence);
+    ProductPicutre getProductPicture(ProductPicutre productPicutre);
 
     @Select("select * from product where product_id = #{product_id}")
     Product getProduct(int product_id);

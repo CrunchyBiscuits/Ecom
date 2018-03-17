@@ -1,4 +1,7 @@
-<%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="com.ecom.dao.ProductOperator" %>
+<%@ page import="com.ecom.beans.Product" %><%--
   Created by IntelliJ IDEA.
   User: ZerounZhang
   Date: 2018/3/15
@@ -11,16 +14,21 @@
     <title>Title</title>
 </head>
 <body>
-<%int product_id = Integer.parseInt(request.getParameter("product_id"));
-int totalNum = Integer.parseInt(request.getParameter("totalNum"));%>
+<%
+    int product_id = (int)request.getAttribute("product_id");
+    int size = (int)request.getAttribute("size");
+%>
+<h2><%=product_id%></h2>
+<h2><%=size%></h2>
 <table>
     <%
-        for (int i=0;i<totalNum;i++)
+        for (int i=0;i<size;i++)
         {
+            String imgUrl = "productimage/"+product_id+"/"+i;
     %>
     <tr>
         <td>
-            <img src="productimage?product_id=<%=product_id%>&sequence<%=i%>">
+            <img src="<%=imgUrl%>">
         </td>
     </tr>
     <%

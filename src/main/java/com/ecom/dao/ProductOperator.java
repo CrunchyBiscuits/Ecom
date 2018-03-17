@@ -6,6 +6,8 @@ import com.ecom.mapper.ProductMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import java.util.List;
+
 public class ProductOperator {
 
     private Product product;
@@ -69,7 +71,15 @@ public class ProductOperator {
     //获取商品的一个图片
     public ProductPicutre selectProductPicture(int sequence){
         ProductMapper mapper = session.getMapper(ProductMapper.class);
-        return mapper.getProductPicture(product.getProduct_id(), sequence);
+        ProductPicutre productPicutre = new ProductPicutre();
+        productPicutre.setProduct_id(product.getProduct_id());
+        productPicutre.setSequence(sequence);
+        return mapper.getProductPicture(productPicutre);
+    }
+
+    public List<ProductPicutre> getProductPictures(){
+        ProductMapper mapper = session.getMapper(ProductMapper.class);
+        return mapper.getProductPictures(product.getProduct_id());
     }
     //finalize函数处理数据库的关闭
     protected void finalize() throws java.lang.Throwable{

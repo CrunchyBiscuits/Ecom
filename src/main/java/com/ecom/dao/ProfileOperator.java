@@ -154,7 +154,7 @@ public class ProfileOperator{
             //插入product信息
             ProductMapper productMapper = session.getMapper(ProductMapper.class);
             productMapper.insertProduct(product);
-            session.commit();
+            //session.commit();
 
             //获取product_id
             int product_id = productMapper.getLastInsertID();
@@ -173,11 +173,12 @@ public class ProfileOperator{
                     productPicutre.setFile(picturelist.get(i).get("picture"));
                     productPicutre.setSequence(i);
                     productMapper.insertProductPicture(productPicutre);
-                    session.commit();
+
                     check = true;
                 }
 
             }
+            session.commit();
             return check;
 
         }catch (Exception e){
