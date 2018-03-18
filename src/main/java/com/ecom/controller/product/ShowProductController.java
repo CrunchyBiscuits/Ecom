@@ -24,7 +24,6 @@ public class ShowProductController {
         try {
             Product product = new Product();
             product.setProduct_id(product_id);
-            System.out.println("hello");
 
             ProductOperator operator = new ProductOperator(product);
 

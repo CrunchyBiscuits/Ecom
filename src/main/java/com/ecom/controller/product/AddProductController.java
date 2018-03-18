@@ -13,17 +13,21 @@ public class AddProductController {
 
     @RequestMapping(value="/addproduct",method= RequestMethod.POST)
     public ModelAndView addProfile( HttpServletRequest request) {
-
-        ProfileOperator operator = new ProfileOperator();
-        String profileMessage="";
-
-        if (operator.addProductAndPicture(request)) {
-            profileMessage = "Insert Product Success";
-        }else {
-            profileMessage = "Insert Product Failed";
+        try{
+            ProfileOperator operator = new ProfileOperator();
+            String profileMessage="";
+            request.setCharacterEncoding("UTF-8");
+            if (operator.addProductAndPicture(request)) {
+                profileMessage = "Insert Product Success";
+            }else {
+                profileMessage = "Insert Product Failed";
+            }
+            System.out.println(profileMessage);
+            return new ModelAndView("resultpage", "message", profileMessage);
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        System.out.println(profileMessage);
-        return new ModelAndView("resultpage", "message", profileMessage);
+       return null;
     }
 }
 

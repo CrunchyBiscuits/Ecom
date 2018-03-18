@@ -14,18 +14,23 @@ public class AddUserProfile {
     //返回ModelAndView进行基础页面输出
     @RequestMapping(value="/profile",method= RequestMethod.POST)
     public ModelAndView addProfile(Model model,HttpServletRequest request) {
-
-        ProfileOperator operator = new ProfileOperator();
-        //System.out.println(user.getProfile());
-        String profileMessage="";
-        //添加头像
-        if (operator.insertUserProfile(request)) {
-            profileMessage = "Insert Profile Success";
-        }else {
-            profileMessage = "Insert Profile Failed";
-        }
-        System.out.println(profileMessage);
-        return new ModelAndView("resultpage", "message", profileMessage);
+try{
+    ProfileOperator operator = new ProfileOperator();
+    //System.out.println(user.getProfile());
+    String profileMessage="";
+    //添加头像
+    request.setCharacterEncoding("UTF-8");
+    if (operator.insertUserProfile(request)) {
+        profileMessage = "Insert Profile Success";
+    }else {
+        profileMessage = "Insert Profile Failed";
+    }
+    System.out.println(profileMessage);
+    return new ModelAndView("resultpage", "message", profileMessage);
+}catch (Exception e){
+    e.printStackTrace();
+}
+       return null;
     }
 
 }
